@@ -67,6 +67,34 @@ module Enumerable
       return @result
     end
   end
+
+  def my_map
+    if block_given?
+      i = 0
+      while i < self.length
+        self[i] = yield(self[i])
+        i += 1
+      end
+      return self
+    else
+      #retorna enumerator
+
+    end
+  end
+
+  def my_none?
+    if block_given?
+      i = 0
+      while i < self.length
+        if yield(self[i])
+          return false
+        end
+        i += 1
+      end
+      return true
+    end
+  end
+
 end
 
 # You will first have to define my_each
