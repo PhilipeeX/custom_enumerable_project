@@ -18,7 +18,7 @@ module Enumerable
       until i == self.length
         if yield(self[i])
           i += 1
-        else 
+        else
           return false
         end
       end
@@ -26,6 +26,47 @@ module Enumerable
     end
   end
 
+  def my_any?
+    if block_given?
+      i = 0
+      until i == self.length
+        if yield(self[i])
+          return true
+        end
+          i += 1
+      end
+      return false
+    end
+  end
+
+  def my_count
+    if block_given?
+      i = 0
+      count = 0
+      while i < self.length
+        if yield(self[i])
+          count += 1
+        end
+        i +=1
+      end
+      return count
+    else
+      return self.size
+    end
+  end
+
+  def my_inject(initial_value)
+    if block_given?
+      @result = initial_value
+      i = 0
+      # require 'pry-byebug'; binding.pry
+      while i < self.length
+        @result = yield(@result, self[i])
+        i += 1
+      end
+      return @result
+    end
+  end
 end
 
 # You will first have to define my_each
