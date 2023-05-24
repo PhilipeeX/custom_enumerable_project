@@ -1,5 +1,6 @@
 module Enumerable
-  # Your code goes here
+  # Your code goes her
+
 end
 
 # You will first have to define my_each
@@ -8,6 +9,14 @@ end
 # to this method
 class Array
   def my_each
+    if block_given?
+      i = 0
+      until i == self.length do 
+        # require 'pry-byebug'; binding.pry
+        yield(self[i])
+        i += 1
+      end
+    end
     self
   end
 end
