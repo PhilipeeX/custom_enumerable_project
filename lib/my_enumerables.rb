@@ -95,6 +95,21 @@ module Enumerable
     end
   end
 
+  def my_select
+    if block_given?
+      i = 0
+      new_array = []
+      while i < self.length
+        if yield(self[i])
+          new_array << self[i]
+        end
+        i += 1
+      end
+      return new_array
+    else
+      self
+    end
+  end
 end
 
 # You will first have to define my_each
